@@ -25,6 +25,8 @@ html {
   --border: rgb(55, 55, 55) solid 1px;
   --text-color: white;
   --font-size: 1rem;
+  --submit-border: rgb(0 255 38);
+  --submit-background: rgb(0 169 53);
 }
 
 .flexbox {
@@ -86,8 +88,8 @@ html {
   background: none;
 }
 .save {
-  border-color: rgb(0 255 38);
-  background-color: rgb(0 169 53);
+  border-color: var(--submit-border);
+  background-color: var(--submit-background);
 }
 .start {
   border-color: rgb(0 102 255);
@@ -110,9 +112,8 @@ html {
   height: 10vh;
 }
 
-/* sidebar & configpanel */
-.sidebar,
-.configpanel {
+/* sidebar */
+.sidebar {
   height: 90vh;
   width: 15vw;
   background-color: var(--main-gray-color);
@@ -177,9 +178,83 @@ html {
   border: var(--border);
   color: var(--text-color);
 }
+/* configPanel */
+.configpanel {
+  display: grid;
+  position: fixed;
+  grid-template-rows: 8% 90%;
+  height: 85vh;
+  width: 15vw;
+  border-radius: 13px;
+  right: 1vw;
+  top: 12.5vh;
+  background-color: var(--main-black-color);
+  color: var(--text-color);
+  border: var(--border);
+}
+.configpanel-close-button {
+  width: 100%;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-bottom-left-radius: 13px;
+  border-bottom-right-radius: 13px;
+  border: none;
+  border-bottom: var(--border);
+  background: none;
+  color: var(--text-color);
+}
+.configpanel-cross {
+  font-size: 2rem;
+}
+.configpanel-variable-zone {
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 80%;
+  justify-self: center;
+  margin-block: 3%;
+  overflow: auto;
+  gap: 1%;
+}
+.configpanel-div {
+  display: flex;
+  flex-direction: column;
+  border-bottom: var(--border);
+  padding-bottom: 5%;
+  gap: 10px;
+}
+.configpanel-select,
+.configpanel-input-number,
+.configpanel-button {
+  background: var(--main-gray-color);
+  outline: none;
+  border: var(--border);
+  border-radius: 8px;
+  height: 4vh;
+  color: var(--text-color);
+}
+.apply {
+  border: var(--border);
+  border-radius: 8px;
+  height: 5vh;
+  color: var(--text-color);
+  border-color: var(--submit-border);
+  background-color: var(--submit-background);
+}
+
 /* canvas */
-.canvas {
-  width: 70vw;
+.canvas-div {
+  flex: 1;
   background-color: var(--canvas-color);
   border-bottom: var(--border);
+  overflow: scroll;
+}
+.canvas {
+  flex: 1;
+  background-color: var(--canvas-color);
+  border-bottom: var(--border);
+  overflow: scroll;
 }
