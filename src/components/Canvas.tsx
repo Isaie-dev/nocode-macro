@@ -1,6 +1,13 @@
+//imports
+
 export default function Canvas() {
-  return (
-    <canvas className="canvas">
-    </canvas>
+
+//visual
+return (
+    <div className="canvas-div">
+        <canvas className="canvas">
+        </canvas>
+    </div>
+    
   );
-}
+}  

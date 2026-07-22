@@ -235,6 +235,7 @@ html {
   border-radius: 8px;
   height: 4vh;
   color: var(--text-color);
+  padding: 2%;
 }
 .apply {
   border: var(--border);
@@ -250,11 +251,17 @@ html {
   flex: 1;
   background-color: var(--canvas-color);
   border-bottom: var(--border);
-  overflow: scroll;
+  border-right: var(--border);
 }
 .canvas {
-  flex: 1;
-  background-color: var(--canvas-color);
-  border-bottom: var(--border);
-  overflow: scroll;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 10%,
+    rgba(212, 0, 190, 0) 10%
+  );
+  background-repeat: repeat;
+  background-size: 3vh 3vh;
 }
