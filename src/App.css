@@ -3,6 +3,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  user-select: none;
 }
 
 html {
@@ -259,9 +260,9 @@ html {
   background: #ffffff;
   background: radial-gradient(
     circle,
-    rgba(255, 255, 255, 1) 10%,
-    rgba(212, 0, 190, 0) 10%
+    rgba(255, 255, 255, 1) 0.4vh,
+    rgba(212, 0, 190, 0) 0.4vh
   );
   background-repeat: repeat;
-  background-size: 3vh 3vh;
+  background-size: 4vh 4vh;
 }
