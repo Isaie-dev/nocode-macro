@@ -172,6 +172,7 @@ html {
   border: var(--border);
   color: var(--text-color);
 }
+
 .feedback-button {
   width: 60%;
   height: 8%;
@@ -268,8 +269,9 @@ html {
     rgba(212, 0, 190, 0) 0.4vh
   );
   background-repeat: repeat;
-  background-size: 4vh 4vh;
+  background-size: 20vh 20vh;
 }
 .placed-cart {
   position: absolute;
+  transform-origin: top left;
 }

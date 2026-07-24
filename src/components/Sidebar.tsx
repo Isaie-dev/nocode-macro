@@ -4,7 +4,7 @@ export default function Sidebar() {
         <input className="search-input" type="text" placeholder="Look for a cart..." />
         <h2 className="cartalog-title">Cartalog</h2>
         <div className="cartalog-div">
-            <div className="add-cart"><p className="cart-mouse">Mouse</p><p className="info">?</p></div>
+            <div draggable className="add-cart"><p className="cart-mouse">Mouse</p><p className="info">?</p></div>
             <div className="add-cart"><p className="cart-keyboard">Keyboard</p><p className="info">?</p></div>
             <div className="add-cart"><p className="cart-run">Run</p><p className="info">?</p></div>
             <div className="add-cart"><p className="cart-kill">Kill</p><p className="info">?</p></div>
