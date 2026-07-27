@@ -1,5 +1,5 @@
 //imports
-import { useRef, MouseEvent, useState } from 'react';
+import { useRef, MouseEvent, useState, } from 'react';
 
 export default function Canvas() {
 //script
@@ -7,10 +7,18 @@ export default function Canvas() {
 const [backgroundZoom, setBackgroundZoom] = useState(4.5);
 const [placedCartPositions, setPlacedCartPositions] =
 useState(
-    {  
+    [
+        {  
+            id : `cart_${crypto.randomUUID()}`,
+            x : 400,
+            y : 700
+        },
+        {  
+            id : `cart_${crypto.randomUUID()}`,
         x : 400,
         y : 700
     }
+]
 );
 const [cameraCoordinates, setCameraCoordinates] =
 useState(
@@ -22,18 +30,20 @@ useState(
 
 //useRef
 const isDraggingCanvas = useRef(false);
-const isDraggingCart = useRef(false);
+const isDraggingCart = useRef({
+    id : "",
+    bool : false
+});
 const lastMousePos = useRef({x: 0, y: 0});
 
 //useRef - dom
-const cart1 = useRef<HTMLDivElement>(null);
 const canvasRef = useRef<HTMLDivElement>(null);
 
 //functions
 //stops other functions when leaving the screen or stop holding left click
 function isntHolding(){
      isDraggingCanvas.current = false;
-     isDraggingCart.current = false;
+     isDraggingCart.current.bool = false;
 }
 
 //handle the canvas when held
@@ -54,7 +64,8 @@ function handleCartMouseDown(event: MouseEvent<HTMLDivElement>) {
     //makes sure that the left click is clicked
     if (event.button === 0) {
         //makes sure that a click is held
-        isDraggingCart.current = true;
+        isDraggingCart.current.bool = true;
+isDraggingCart.current.id = event.currentTarget.id; 
         //save Mouse position
         lastMousePos.current = ({x: event.clientX, y: event.clientY});
     }
@@ -64,7 +75,7 @@ function handleCartMouseDown(event: MouseEvent<HTMLDivElement>) {
 function handleGlobalMouseMove(event: MouseEvent<HTMLDivElement>){
     //stop if neither the canvas neither the cart is being held
     if (isDraggingCanvas.current === false &&
-        isDraggingCart.current === false)
+        isDraggingCart.current.bool === false)
     {
         return
     }
@@ -86,14 +97,23 @@ function handleGlobalMouseMove(event: MouseEvent<HTMLDivElement>){
         }
 
         //if cart is held
-        else if (isDraggingCart.current === true)
+        else if (isDraggingCart.current.bool === true)
         {
-            //sets new cart coordinates
-            setPlacedCartPositions ({
-                x : placedCartPositions.x + deltaX,
-                y : placedCartPositions.y + deltaY
-            })
+                        setPlacedCartPositions( placedCarts => placedCarts.map( cart => {
+    
+    if (cart.id === isDraggingCart.current.id) {
+        return { 
+            ...cart, 
+            x: cart.x + deltaX,
+                y: cart.y + deltaY
+            };
+    } else {
+        return cart;
+    }
+    
+}));
         }
+
         //sets new mouse coords
         lastMousePos.current.x = event.clientX
         lastMousePos.current.y = event.clientY
@@ -125,7 +145,22 @@ function zoomUpOrDown(event: React.WheelEvent<HTMLDivElement>){
 return (
     <div className="canvas-div">
         <div ref={canvasRef} style={{backgroundPositionX: cameraCoordinates.x + "px", backgroundPositionY: cameraCoordinates.y + "px", backgroundImage: "radial-gradient(circle,rgba(255, 255, 255, 1) "+ backgroundZoom / 10 +"vh ,rgba(212, 0, 190, 0) "+ backgroundZoom / 10 +"vh)", backgroundSize:`${backgroundZoom + 1 }vh ${backgroundZoom + 1 }vh`}} onMouseDown={handleCanvasMouseDown} onMouseUp={isntHolding} onMouseMove={handleGlobalMouseMove} onMouseLeave={isntHolding} onWheel={zoomUpOrDown} className="canvas">
-            <div id='0' ref={cart1} style={{transform: `scale(${backgroundZoom - 0.5})`, left: placedCartPositions.x + cameraCoordinates.x + "px", top: placedCartPositions.y + cameraCoordinates.y + "px"}}onMouseDown={handleCartMouseDown} className="add-cart placed-cart"><p className="cart-mouse">Mouse</p><p className="info">?</p></div>
+            {placedCartPositions.map((cart) => (
+                <div
+                    key={cart.id}
+                    id={cart.id}
+                    style=
+                    {{
+transform: `scale(${backgroundZoom - 0.5})`,
+left: cart.x + cameraCoordinates.x + "px", 
+top: cart.y + cameraCoordinates.y + "px"
+                    }} 
+onMouseDown={handleCartMouseDown} 
+className="add-cart placed-cart"> 
+<p className="cart-mouse">Mouse</p> 
+<p className="info">?</p>
+</div>
+))}
         </div>
     </div>
   );
