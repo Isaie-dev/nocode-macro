@@ -265,11 +265,10 @@ html {
   background: #ffffff;
   background: radial-gradient(
     circle,
-    rgba(255, 255, 255, 1) 0.4vh,
-    rgba(212, 0, 190, 0) 0.4vh
+    rgba(255, 255, 255, 1) 40px,
+    rgba(212, 0, 190, 0) 40px
   );
   background-repeat: repeat;
-  background-size: 20vh 20vh;
 }
 .placed-cart {
   position: absolute;

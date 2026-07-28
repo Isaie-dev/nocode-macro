@@ -4,7 +4,7 @@ import { useRef, MouseEvent, useState, } from 'react';
 export default function Canvas() {
 //script
 //useState
-const [backgroundZoom, setBackgroundZoom] = useState(4.5);
+const [backgroundZoom, setBackgroundZoom] = useState(1);
 const [placedCartPositions, setPlacedCartPositions] =
 useState(
     [
@@ -104,8 +104,8 @@ function handleGlobalMouseMove(event: MouseEvent<HTMLDivElement>){
     if (cart.id === isDraggingCart.current.id) {
         return { 
             ...cart, 
-            x: cart.x + deltaX,
-                y: cart.y + deltaY
+            x: cart.x + deltaX / backgroundZoom,
+                y: cart.y + deltaY / backgroundZoom
             };
     } else {
         return cart;
@@ -113,7 +113,6 @@ function handleGlobalMouseMove(event: MouseEvent<HTMLDivElement>){
     
 }));
         }
-
         //sets new mouse coords
         lastMousePos.current.x = event.clientX
         lastMousePos.current.y = event.clientY
@@ -122,20 +121,35 @@ function handleGlobalMouseMove(event: MouseEvent<HTMLDivElement>){
 
 //zoom on scroll
 function zoomUpOrDown(event: React.WheelEvent<HTMLDivElement>){
+    let newCamCoords = {x:0, y: 0}
     //determine if scroll up or down
     if  (event.deltaY < 0){
         //securtity to prevent infinite zoom
-        if (backgroundZoom < 10) {
+        if (backgroundZoom < 2) {
+            let newZoom = backgroundZoom + 0.1;
             //update backgroundZoom
-            setBackgroundZoom(backgroundZoom +0.2)
-        }
+            newCamCoords.x = (event.clientX - cameraCoordinates.x) / backgroundZoom;
+            newCamCoords.y = (event.clientY - cameraCoordinates.y) / backgroundZoom;
+            setCameraCoordinates ({
+                x : event.clientX - newCamCoords.x * newZoom,
+                y : event.clientY - newCamCoords.y * newZoom
+            });
+            setBackgroundZoom(backgroundZoom + 0.1);
+        };
     }
 
     else {
         //securtity to prevent infinite zoom
-        if (backgroundZoom > 1) {
+        if (backgroundZoom > 0.5) {
+            let newZoom = backgroundZoom - 0.1;
             //update backgroundZoom
-            setBackgroundZoom(backgroundZoom -0.2)
+            newCamCoords.x = (event.clientX - cameraCoordinates.x) / backgroundZoom
+            newCamCoords.y = (event.clientY - cameraCoordinates.y) / backgroundZoom
+            setCameraCoordinates ({
+                x : event.clientX - newCamCoords.x * newZoom,
+                y : event.clientY - newCamCoords.y * newZoom
+            })   
+            setBackgroundZoom(backgroundZoom - 0.1)
         }
     }
 }
@@ -144,23 +158,37 @@ function zoomUpOrDown(event: React.WheelEvent<HTMLDivElement>){
 //visual
 return (
     <div className="canvas-div">
-        <div ref={canvasRef} style={{backgroundPositionX: cameraCoordinates.x + "px", backgroundPositionY: cameraCoordinates.y + "px", backgroundImage: "radial-gradient(circle,rgba(255, 255, 255, 1) "+ backgroundZoom / 10 +"vh ,rgba(212, 0, 190, 0) "+ backgroundZoom / 10 +"vh)", backgroundSize:`${backgroundZoom + 1 }vh ${backgroundZoom + 1 }vh`}} onMouseDown={handleCanvasMouseDown} onMouseUp={isntHolding} onMouseMove={handleGlobalMouseMove} onMouseLeave={isntHolding} onWheel={zoomUpOrDown} className="canvas">
+        <div 
+            ref={canvasRef} 
+            style={{
+                backgroundPositionX: cameraCoordinates.x + "px",
+                backgroundPositionY: cameraCoordinates.y + "px",
+                backgroundImage: "radial-gradient(circle,rgba(255, 255, 255, 1) "+ backgroundZoom +"px ,rgba(212, 0, 190, 0) "+ backgroundZoom +"px)",
+                backgroundSize:`${backgroundZoom + 1 }vh ${backgroundZoom + 1 }vh`
+            }} 
+
+            onMouseDown={handleCanvasMouseDown} 
+            onMouseUp={isntHolding} 
+            onMouseMove={handleGlobalMouseMove} 
+            onMouseLeave={isntHolding} 
+            onWheel={zoomUpOrDown} 
+            className="canvas">
+
             {placedCartPositions.map((cart) => (
                 <div
                     key={cart.id}
                     id={cart.id}
-                    style=
-                    {{
-transform: `scale(${backgroundZoom - 0.5})`,
-left: cart.x + cameraCoordinates.x + "px", 
-top: cart.y + cameraCoordinates.y + "px"
+                    style={{
+                            transform: `scale(${backgroundZoom})`,
+                            left: `${(cart.x * backgroundZoom) + cameraCoordinates.x}px`, 
+                            top: `${(cart.y * backgroundZoom) + cameraCoordinates.y}px`
                     }} 
-onMouseDown={handleCartMouseDown} 
-className="add-cart placed-cart"> 
-<p className="cart-mouse">Mouse</p> 
-<p className="info">?</p>
-</div>
-))}
+                    onMouseDown={handleCartMouseDown} 
+                    className="add-cart placed-cart"> 
+                    <p className="cart-mouse">Mouse</p> 
+                    <p className="info">?</p>
+                </div>
+            ))}
         </div>
     </div>
   );
