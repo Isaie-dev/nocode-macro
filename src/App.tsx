@@ -25,6 +25,7 @@ function handleAddCart() {
     }
   ]);
 }
+
   return (
     <div className="app-container">
         <Header />

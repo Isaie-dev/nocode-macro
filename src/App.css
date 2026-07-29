@@ -173,6 +173,26 @@ html {
   color: var(--text-color);
 }
 
+.info {
+  position: relative;
+}
+.info:hover .cart-popup {
+  opacity: 100;
+}
+.cart-popup {
+  transition: all 0.3s;
+  right: 0;
+  position: absolute;
+  width: 10vw;
+  border: var(--border);
+  background-color: var(--main-black-color);
+  opacity: 0;
+  pointer-events: none;
+  bottom: 10px;
+  border-radius: 13px;
+  padding: 25%;
+}
+
 .feedback-button {
   width: 60%;
   height: 8%;
@@ -273,4 +293,6 @@ html {
 .placed-cart {
   position: absolute;
   transform-origin: top left;
+  display: flex;
+  justify-content: center;
 }

@@ -181,8 +181,7 @@ return (
                     }} 
                     onMouseDown={handleCartMouseDown} 
                     className="add-cart placed-cart"> 
-                    <p className="cart-mouse">Mouse</p> 
-                    <p className="info">?</p>
+                    <p className="cart-mouse">Mouse</p>
                 </div>
             ))}
         </div>

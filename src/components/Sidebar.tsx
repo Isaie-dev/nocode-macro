@@ -1,6 +1,8 @@
-
+//imports
+import { cartalog } from "../data/cartalog";
 interface SidebarProps {
   onAddCart: () => void;
+
 }
 
 export default function Sidebar(props: SidebarProps) {
@@ -9,14 +11,14 @@ export default function Sidebar(props: SidebarProps) {
         <input className="search-input" type="text" placeholder="Look for a cart..." />
         <h2 className="cartalog-title">Cartalog</h2>
         <div className="cartalog-div">
-            <div draggable onClick={props.onAddCart} className="add-cart"><p className="cart-mouse">Mouse</p><p className="info">?</p></div>
-            <div className="add-cart" onClick={props.onAddCart}><p className="cart-keyboard">Keyboard</p><p className="info">?</p></div>
-            <div className="add-cart" onClick={props.onAddCart}><p className="cart-run">Run</p><p className="info">?</p></div>
-            <div className="add-cart" onClick={props.onAddCart}><p className="cart-kill">Kill</p><p className="info">?</p></div>
-            <div className="add-cart" onClick={props.onAddCart}><p className="cart-destroy">Destroy</p><p className="info">?</p></div>
-            <div className="add-cart" onClick={props.onAddCart}><p className="cart-text">Text</p><p className="info">?</p></div>
-            <div className="add-cart" onClick={props.onAddCart}><p className="cart-copy">Copy</p><p className="info">?</p></div>
-            <div className="add-cart" onClick={props.onAddCart}><p className="cart-paste">Paste</p><p className="info">?</p></div>
+          {cartalog.map((cart) => (
+                <div
+                    onClick={props.onAddCart} 
+                    className="add-cart"> 
+                    <p>{cart.name}</p> 
+                    <div className="info">?<span className="cart-popup">{cart.description}</span></div>
+                </div>
+          ))}
         </div>
         <button className="feedback-button">Feedback</button>
     </div>
