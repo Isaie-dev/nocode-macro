@@ -6,15 +6,31 @@ import ConfigPanel from "./components/ConfigPanel";
 
 //import style
 import "./App.css";
+  
+//imports react
+import { useState } from "react";
 
 //put them together in a function
 function App() {
+
+//functions and states that are used in multiple components
+const [carts, setCarts] = useState<{id: string, x: number, y: number}[]>([]);
+//function to add a new cart to the canvas
+function handleAddCart() {
+  setCarts(carts => [...carts, 
+    { 
+        id: `cart_${crypto.randomUUID()}`,
+        x: 0, 
+        y: 0 
+    }
+  ]);
+}
   return (
     <div className="app-container">
         <Header />
       <div className="main-content">
-        <Sidebar />
-        <Canvas />
+        <Sidebar onAddCart={handleAddCart} />
+        <Canvas carts={carts} setCarts={setCarts}/>
         <ConfigPanel />
       </div>
     </div>

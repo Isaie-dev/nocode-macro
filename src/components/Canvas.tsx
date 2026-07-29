@@ -1,25 +1,21 @@
 //imports
 import { useRef, MouseEvent, useState, } from 'react';
 
-export default function Canvas() {
+interface Cart {
+  id: string;
+  x: number;
+  y: number;
+}
+
+interface CanvasProps {
+  carts: Cart[];
+  setCarts: React.Dispatch<React.SetStateAction<Cart[]>>;
+}
+
+export default function Canvas(props: CanvasProps) {
 //script
 //useState
 const [backgroundZoom, setBackgroundZoom] = useState(1);
-const [placedCartPositions, setPlacedCartPositions] =
-useState(
-    [
-        {  
-            id : `cart_${crypto.randomUUID()}`,
-            x : 400,
-            y : 700
-        },
-        {  
-            id : `cart_${crypto.randomUUID()}`,
-        x : 400,
-        y : 700
-    }
-]
-);
 const [cameraCoordinates, setCameraCoordinates] =
 useState(
     {
@@ -99,7 +95,7 @@ function handleGlobalMouseMove(event: MouseEvent<HTMLDivElement>){
         //if cart is held
         else if (isDraggingCart.current.bool === true)
         {
-                        setPlacedCartPositions( placedCarts => placedCarts.map( cart => {
+                        props.setCarts( placedCarts => placedCarts.map( cart => {
     
     if (cart.id === isDraggingCart.current.id) {
         return { 
@@ -174,7 +170,7 @@ return (
             onWheel={zoomUpOrDown} 
             className="canvas">
 
-            {placedCartPositions.map((cart) => (
+            {props.carts.map((cart) => (
                 <div
                     key={cart.id}
                     id={cart.id}
