@@ -14,12 +14,13 @@ import { useState } from "react";
 function App() {
 
 //functions and states that are used in multiple components
-const [carts, setCarts] = useState<{id: string, x: number, y: number}[]>([]);
+const [carts, setCarts] = useState<{id: number, uniqId: string, x: number, y: number}[]>([]);
 //function to add a new cart to the canvas
-function handleAddCart() {
+function handleAddCart(cartId : number) {
   setCarts(carts => [...carts, 
     { 
-        id: `cart_${crypto.randomUUID()}`,
+        id: cartId,
+        uniqId: `cart_${crypto.randomUUID()}`,
         x: 0, 
         y: 0 
     }

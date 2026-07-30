@@ -1,8 +1,7 @@
 //imports
 import { cartalog } from "../data/cartalog";
 interface SidebarProps {
-  onAddCart: () => void;
-
+  onAddCart: (cartId : number) => void;
 }
 
 export default function Sidebar(props: SidebarProps) {
@@ -12,8 +11,9 @@ export default function Sidebar(props: SidebarProps) {
         <h2 className="cartalog-title">Cartalog</h2>
         <div className="cartalog-div">
           {cartalog.map((cart) => (
-                <div
-                    onClick={props.onAddCart} 
+                <div 
+                    id={String(cart.id)}
+                    onClick={ () => props.onAddCart(cart.id) } 
                     className="add-cart"> 
                     <p>{cart.name}</p> 
                     <div className="info">?<span className="cart-popup">{cart.description}</span></div>

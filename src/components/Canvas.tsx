@@ -1,10 +1,12 @@
 //imports
 import { useRef, MouseEvent, useState, } from 'react';
+import { cartalog } from "../data/cartalog";
 
 interface Cart {
-  id: string;
-  x: number;
-  y: number;
+    id: number;
+    uniqId: string;
+    x: number;
+    y: number;
 }
 
 interface CanvasProps {
@@ -27,7 +29,7 @@ useState(
 //useRef
 const isDraggingCanvas = useRef(false);
 const isDraggingCart = useRef({
-    id : "",
+    uniqId : "",
     bool : false
 });
 const lastMousePos = useRef({x: 0, y: 0});
@@ -61,7 +63,7 @@ function handleCartMouseDown(event: MouseEvent<HTMLDivElement>) {
     if (event.button === 0) {
         //makes sure that a click is held
         isDraggingCart.current.bool = true;
-isDraggingCart.current.id = event.currentTarget.id; 
+isDraggingCart.current.uniqId = event.currentTarget.id; 
         //save Mouse position
         lastMousePos.current = ({x: event.clientX, y: event.clientY});
     }
@@ -97,7 +99,7 @@ function handleGlobalMouseMove(event: MouseEvent<HTMLDivElement>){
         {
                         props.setCarts( placedCarts => placedCarts.map( cart => {
     
-    if (cart.id === isDraggingCart.current.id) {
+    if (cart.uniqId === isDraggingCart.current.uniqId) {
         return { 
             ...cart, 
             x: cart.x + deltaX / backgroundZoom,
@@ -172,8 +174,8 @@ return (
 
             {props.carts.map((cart) => (
                 <div
-                    key={cart.id}
-                    id={cart.id}
+                    key={cart.uniqId}
+                    id={cart.uniqId}
                     style={{
                             transform: `scale(${backgroundZoom})`,
                             left: `${(cart.x * backgroundZoom) + cameraCoordinates.x}px`, 
@@ -181,7 +183,7 @@ return (
                     }} 
                     onMouseDown={handleCartMouseDown} 
                     className="add-cart placed-cart"> 
-                    <p className="cart-mouse">Mouse</p>
+                    <p className="cart-mouse">{cartalog[cart.id].name}</p>
                 </div>
             ))}
         </div>
