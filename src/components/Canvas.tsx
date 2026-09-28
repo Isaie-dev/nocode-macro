@@ -9,9 +9,16 @@ interface Cart {
     y: number;
 }
 
+interface selectedCart {
+    id: number;
+    uniqId: string;
+}
+
 interface CanvasProps {
   carts: Cart[];
   setCarts: React.Dispatch<React.SetStateAction<Cart[]>>;
+  selectedCart: selectedCart | null;
+  setSelectedCart : React.Dispatch<React.SetStateAction<selectedCart | null >>;
 }
 
 export default function Canvas(props: CanvasProps) {
@@ -38,6 +45,15 @@ const lastMousePos = useRef({x: 0, y: 0});
 const canvasRef = useRef<HTMLDivElement>(null);
 
 //functions
+function setSelectedCart(event: MouseEvent<HTMLDivElement>){
+    props.setSelectedCart (
+        {
+            id : 1,
+            uniqId : event.currentTarget.id,
+        }
+    )
+    console.log(props.selectedCart)        
+}
 //stops other functions when leaving the screen or stop holding left click
 function isntHolding(){
      isDraggingCanvas.current = false;
@@ -63,7 +79,7 @@ function handleCartMouseDown(event: MouseEvent<HTMLDivElement>) {
     if (event.button === 0) {
         //makes sure that a click is held
         isDraggingCart.current.bool = true;
-isDraggingCart.current.uniqId = event.currentTarget.id; 
+        isDraggingCart.current.uniqId = event.currentTarget.id; 
         //save Mouse position
         lastMousePos.current = ({x: event.clientX, y: event.clientY});
     }
@@ -151,8 +167,6 @@ function zoomUpOrDown(event: React.WheelEvent<HTMLDivElement>){
         }
     }
 }
-
-
 //visual
 return (
     <div className="canvas-div">
@@ -164,7 +178,6 @@ return (
                 backgroundImage: "radial-gradient(circle,rgba(255, 255, 255, 1) "+ backgroundZoom +"px ,rgba(212, 0, 190, 0) "+ backgroundZoom +"px)",
                 backgroundSize:`${backgroundZoom + 1 }vh ${backgroundZoom + 1 }vh`
             }} 
-
             onMouseDown={handleCanvasMouseDown} 
             onMouseUp={isntHolding} 
             onMouseMove={handleGlobalMouseMove} 
@@ -181,8 +194,9 @@ return (
                             left: `${(cart.x * backgroundZoom) + cameraCoordinates.x}px`, 
                             top: `${(cart.y * backgroundZoom) + cameraCoordinates.y}px`
                     }} 
+                    onClick={setSelectedCart}
                     onMouseDown={handleCartMouseDown} 
-                    className="add-cart placed-cart"> 
+                    className={`add-cart placed-cart ${cart.uniqId === props.selectedCart?.uniqId && 'selected-cart'}`}>
                     <p className="cart-mouse">{cartalog[cart.id].name}</p>
                 </div>
             ))}

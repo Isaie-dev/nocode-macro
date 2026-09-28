@@ -56,7 +56,7 @@ html {
 /* header */
 .header {
   position: relative;
-  z-index: 10;
+  z-index: 20;
   display: grid;
   grid-template-columns: 15vw 1fr 15vw;
   width: 100%;
@@ -117,7 +117,7 @@ html {
 
 /* sidebar */
 .sidebar {
-  z-index: 10;
+  z-index: 20;
   height: 90vh;
   width: 15vw;
   background-color: var(--main-gray-color);
@@ -234,7 +234,6 @@ html {
   font-size: 2rem;
 }
 .configpanel-variable-zone {
-  height: max-content;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -295,4 +294,9 @@ html {
   transform-origin: top left;
   display: flex;
   justify-content: center;
+}
+
+.selected-cart {
+  border: blue 3px solid;
+  z-index: 10;
 }
