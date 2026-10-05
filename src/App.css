@@ -1,302 +1,338 @@
 /* app settings */
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  user-select: none;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    user-select: none;
 }
 
 html {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 .app-container {
-  height: 100vh;
+    height: 100vh;
 }
 
 .main-content {
-  display: flex;
-  width: 100vw;
+    display: flex;
+    width: 100vw;
 }
+
 /* main styles */
 :root {
-  --main-black-color: rgb(11, 11, 11);
-  --main-gray-color: rgb(26, 26, 28);
-  --canvas-color: rgb(19, 19, 19);
-  --border: rgb(55, 55, 55) solid 1px;
-  --text-color: white;
-  --font-size: 1rem;
-  --submit-border: rgb(0 255 38);
-  --submit-background: rgb(0 169 53);
+    --main-black-color: rgb(11, 11, 11);
+    --main-gray-color: rgb(26, 26, 28);
+    --canvas-color: rgb(19, 19, 19);
+    --border: rgb(55, 55, 55) solid 1px;
+    --text-color: white;
+    --font-size: 1rem;
+    --submit-border: rgb(0 255 38);
+    --submit-background: rgb(0 169 53);
 }
 
 .flexbox {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+
 ::-webkit-scrollbar {
-  width: 6px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: none;
-  margin-block: 10px;
+    background: none;
+    margin-block: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #88888880;
-  border-radius: 10px;
+    background: #88888880;
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555555;
+    background: #555555;
 }
+
 /* header */
 .header {
-  position: relative;
-  z-index: 20;
-  display: grid;
-  grid-template-columns: 15vw 1fr 15vw;
-  width: 100%;
-  height: 10vh;
-  background-color: var(--main-black-color);
-  color: var(--text-color);
-  font-size: var(--font-size);
-  border: var(--border);
+    position: relative;
+    z-index: 20;
+    display: grid;
+    grid-template-columns: 15vw 1fr 15vw;
+    width: 100%;
+    height: 10vh;
+    background-color: var(--main-black-color);
+    color: var(--text-color);
+    font-size: var(--font-size);
+    border: var(--border);
 }
+
 .button-div,
 .header-aside {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .button-div {
-  justify-content: space-evenly;
+    justify-content: space-evenly;
 }
+
 .header-buttons {
-  width: 10vw;
-  height: 6.5vh;
-  border-radius: 8px;
-  border: 1px solid;
-  color: var(--text-color);
-  font-weight: bold;
-  font-size: 1.2rem;
+    width: 10vw;
+    height: 6.5vh;
+    border-radius: 8px;
+    border: 1px solid;
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 1.2rem;
 }
+
 .directory,
 .settings {
-  border: var(--border);
-  background: var(--main-black-color);
+    border: var(--border);
+    background: var(--main-black-color);
 }
+
 .save {
-  border-color: var(--submit-border);
-  background-color: var(--submit-background);
+    border-color: var(--submit-border);
+    background-color: var(--submit-background);
 }
+
 .start {
-  border-color: rgb(0 102 255);
-  background-color: rgb(0 60 179);
+    border-color: rgb(0 102 255);
+    background-color: rgb(0 60 179);
 }
+
 .stop {
-  border: var(--border);
-  background-color: rgb(25 25 25);
-  color: rgb(49, 49, 49);
+    border: var(--border);
+    background-color: rgb(25 25 25);
+    color: rgb(49, 49, 49);
 }
+
 .record,
 .export,
 .import {
-  border: var(--border);
-  background: none;
+    border: var(--border);
+    background: none;
 }
 
 .gear-icon {
-  font-size: 2rem;
-  height: 10vh;
+    font-size: 2rem;
+    height: 10vh;
 }
 
 /* sidebar */
 .sidebar {
-  z-index: 20;
-  height: 90vh;
-  width: 15vw;
-  background-color: var(--main-gray-color);
-  color: var(--text-color);
-  font-size: var(--font-size);
-  border: var(--border);
-  border-top: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+    z-index: 20;
+    height: 90vh;
+    width: 15vw;
+    background-color: var(--main-gray-color);
+    color: var(--text-color);
+    font-size: var(--font-size);
+    border: var(--border);
+    border-top: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .search-input {
-  width: 80%;
-  height: 8%;
-  background: none;
-  border-radius: 8px;
-  text-align: center;
-  border: var(--border);
-  color: var(--text-color);
+    width: 80%;
+    height: 8%;
+    background: none;
+    border-radius: 8px;
+    text-align: center;
+    border: var(--border);
+    color: var(--text-color);
 }
+
 .cartalog-title {
-  text-align: left;
-  width: 80%;
-  font-weight: bold;
-  font-size: 2rem;
+    text-align: left;
+    width: 80%;
+    font-weight: bold;
+    font-size: 2rem;
 }
+
 .cartalog-div {
-  padding-block: 4%;
-  background-color: var(--main-black-color);
-  width: 80%;
-  border-top-right-radius: 13px;
-  border-bottom-right-radius: 13px;
-  border: var(--border);
-  height: 60vh;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  gap: 3%;
-  align-items: center;
+    padding-block: 4%;
+    background-color: var(--main-black-color);
+    width: 80%;
+    border-top-right-radius: 13px;
+    border-bottom-right-radius: 13px;
+    border: var(--border);
+    height: 60vh;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 3%;
+    align-items: center;
 }
+
 .add-cart {
-  display: grid;
-  grid-template-columns: 70% 30%;
-  align-items: center;
-  width: 10vw;
-  height: 8vh;
-  flex-shrink: 0;
-  background: var(--main-gray-color);
-  border-radius: 8px;
-  text-align: center;
-  border: var(--border);
-  color: var(--text-color);
+    display: grid;
+    grid-template-columns: 70% 30%;
+    align-items: center;
+    width: 10vw;
+    height: 8vh;
+    flex-shrink: 0;
+    background: var(--main-gray-color);
+    border-radius: 8px;
+    text-align: center;
+    border: var(--border);
+    color: var(--text-color);
 }
 
 .info {
-  position: relative;
+    position: relative;
 }
+
 .info:hover .cart-popup {
-  opacity: 100;
+    opacity: 100;
 }
+
 .cart-popup {
-  transition: all 0.3s;
-  right: 0;
-  position: absolute;
-  width: 10vw;
-  border: var(--border);
-  background-color: var(--main-black-color);
-  opacity: 0;
-  pointer-events: none;
-  bottom: 10px;
-  border-radius: 13px;
-  padding: 25%;
+    transition: all 0.3s;
+    right: 0;
+    position: absolute;
+    width: 10vw;
+    border: var(--border);
+    background-color: var(--main-black-color);
+    opacity: 0;
+    pointer-events: none;
+    bottom: 10px;
+    border-radius: 13px;
+    padding: 25%;
 }
 
 .feedback-button {
-  width: 60%;
-  height: 8%;
-  background: none;
-  border-radius: 8px;
-  text-align: center;
-  border: var(--border);
-  color: var(--text-color);
+    width: 60%;
+    height: 8%;
+    background: none;
+    border-radius: 8px;
+    text-align: center;
+    border: var(--border);
+    color: var(--text-color);
 }
+
 /* configPanel */
 .configpanel {
-  z-index: 10;
-  display: grid;
-  position: fixed;
-  grid-template-rows: 8% 90%;
-  height: 85vh;
-  width: 15vw;
-  border-radius: 13px;
-  right: 1vw;
-  top: 12.5vh;
-  background-color: var(--main-black-color);
-  color: var(--text-color);
-  border: var(--border);
+    z-index: 10;
+    display: grid;
+    position: fixed;
+    grid-template-rows: auto 1fr;
+    max-height: 85vh;
+    width: 15vw;
+    border-radius: 13px;
+    right: 1vw;
+    top: 12.5vh;
+    background-color: var(--main-black-color);
+    color: var(--text-color);
+    border: var(--border);
 }
+
+.configpanel-close-button-div {
+    width: 100%;
+    height: 8vh;
+}
+
 .configpanel-close-button {
-  width: 100%;
-  font-size: 0.8rem;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  border-bottom-left-radius: 13px;
-  border-bottom-right-radius: 13px;
-  border: none;
-  border-bottom: var(--border);
-  background: none;
-  color: var(--text-color);
+    width: 100%;
+    height: 100%;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom-left-radius: 13px;
+    border-bottom-right-radius: 13px;
+    border: none;
+    border-bottom: var(--border);
+    background: none;
+    color: var(--text-color);
 }
+
 .configpanel-cross {
-  font-size: 2rem;
+    font-size: 2rem;
 }
+
 .configpanel-variable-zone {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 80%;
-  justify-self: center;
-  margin-block: 3%;
-  overflow: auto;
-  gap: 1%;
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    justify-self: center;
+    margin-block: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    gap: 1vh;
 }
+
 .configpanel-div {
-  display: flex;
-  flex-direction: column;
-  border-bottom: var(--border);
-  padding-bottom: 5%;
-  gap: 10px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: var(--border);
+    padding-bottom: 5%;
+    gap: 10px;
 }
+
 .configpanel-select,
 .configpanel-input-number,
 .configpanel-button {
-  background: var(--main-gray-color);
-  outline: none;
-  border: var(--border);
-  border-radius: 8px;
-  height: 4vh;
-  color: var(--text-color);
-  padding: 2%;
+    background: var(--main-gray-color);
+    outline: none;
+    border: var(--border);
+    border-radius: 8px;
+    height: 4vh;
+    color: var(--text-color);
+    padding: 2%;
 }
+
+.configpanel-button {
+    font-size: 0.8rem;
+    height: 6vh;
+}
+
 .apply {
-  border: var(--border);
-  border-radius: 8px;
-  height: 5vh;
-  color: var(--text-color);
-  border-color: var(--submit-border);
-  background-color: var(--submit-background);
+    margin-top: 5%;
+    border: var(--border);
+    border-radius: 8px;
+    height: 5vh;
+    color: var(--text-color);
+    border-color: var(--submit-border);
+    background-color: var(--submit-background);
 }
 
 /* canvas */
 .canvas-div {
-  flex: 1;
-  background-color: var(--canvas-color);
-  border-bottom: var(--border);
-  border-right: var(--border);
+    flex: 1;
+    background-color: var(--canvas-color);
+    border-bottom: var(--border);
+    border-right: var(--border);
 }
+
 .canvas {
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  background: #ffffff;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 1) 40px,
-    rgba(212, 0, 190, 0) 40px
-  );
-  background-repeat: repeat;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    background: radial-gradient(
+            circle,
+            rgba(255, 255, 255, 1) 40px,
+            rgba(212, 0, 190, 0) 40px
+    );
+    background-repeat: repeat;
 }
+
 .placed-cart {
-  position: absolute;
-  transform-origin: top left;
-  display: flex;
-  justify-content: center;
+    position: absolute;
+    transform-origin: top left;
+    display: flex;
+    justify-content: center;
 }
 
 .selected-cart {
-  border: blue 3px solid;
-  z-index: 10;
+    border: blue 3px solid;
+    z-index: 10;
 }
