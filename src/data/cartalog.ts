@@ -123,60 +123,154 @@ export const cartalog: CartalogItem[] = [
         ],
         systemAction: "Middle Click",
     },
-    // {
-    //     id: 3,
-    //     name: "Keystroke",
-    //     description: "Simulate a Keystroke",
-    //     elements: ["KeyList","Delay(ms)"],
-    //     systemAction: "Keystroke",
-    // },
-    // {
-    //     id: 4,
-    //     name: "Run",
-    //     description: "Run any file",
-    //     elements: ["file","Delay(ms)"],
-    //     systemAction: "run",
-    // },
-    // {
-    //     id: 5,
-    //     name: "Kill",
-    //     description: "Kill an app and ask to save if file isn't saved",
-    //     elements: ["file","Delay(ms)"],
-    //     systemAction: "kill",
-    // },
-    // {
-    //     id: 6,
-    //     name: "Destroy",
-    //     description: "Kill an app without asking to save if file isn't saved",
-    //     elements: ["file","Delay(ms)"],
-    //     systemAction: "destroy",
-    // },
-    // {
-    //     id: 7,
-    //     name: "Paste",
-    //     description: "Paste any text",
-    //     elements: ["Text to paste","Delay(ms)"],
-    //     systemAction: "ctrl + v",
-    // },
-    // {
-    //     id: 8,
-    //     name: "Shut Down",
-    //     description: "Shut down computer",
-    //     elements: ["Delay(ms)"],
-    //     systemAction: "shut down",
-    // },
-    // {
-    //     id: 9,
-    //     name: "Sleep Mode",
-    //     description: "Put computer into Sleep Mode",
-    //     elements: ["Delay(ms)"],
-    //     systemAction: "sleep",
-    // },
-    // {
-    //     id: 10,
-    //     name: "Restart",
-    //     description: "Restart Computer",
-    //     elements: ["Delay(ms)"],
-    //     systemAction: "restart",
-    // },
+    {
+        id: 3,
+        name: "Keystroke",
+        description: "Simulate a Keystroke",
+        elements: [
+            {
+                html: "button",
+                text: "Get key on next keystroke",
+                class: "configpanel-button",
+                function: {name: "getKeyOnNextKeyStroke", action: "onClick"}
+            },
+            {
+                html: "input",
+                type: "number",
+                placeHolder: "20",
+                label: "Delay(ms)",
+                class: "configpanel-input-number"
+            }
+        ],
+        systemAction: "Keystroke",
+    },
+    {
+        id: 4,
+        name: "Run",
+        description: "Run any file",
+        elements: [
+            {
+                html: "input",
+                type: "file",
+                label: "Select file",
+                class: "configpanel-input-file"
+            },
+            {
+                html: "input",
+                type: "number",
+                placeHolder: "20",
+                label: "Delay(ms)",
+                class: "configpanel-input-number"
+            }
+        ],
+        systemAction: "run",
+    },
+    {
+        id: 5,
+        name: "Kill",
+        description: "Kill an app and ask to save if file isn't saved",
+        elements: [
+            {
+                html: "input",
+                type: "file",
+                label: "Select file",
+                class: "configpanel-input-file"
+            },
+            {
+                html: "input",
+                type: "number",
+                placeHolder: "20",
+                label: "Delay(ms)",
+                class: "configpanel-input-number"
+            }
+        ],
+        systemAction: "kill",
+    },
+    {
+        id: 6,
+        name: "Destroy",
+        description: "Kill an app without asking to save if file isn't saved",
+        elements: [
+            {
+                html: "input",
+                type: "file",
+                label: "Select file",
+                class: "configpanel-input-file"
+            },
+            {
+                html: "input",
+                type: "number",
+                placeHolder: "20",
+                label: "Delay(ms)",
+                class: "configpanel-input-number"
+            }
+        ],
+        systemAction: "destroy",
+    },
+    {
+        id: 7,
+        name: "Paste",
+        description: "Paste any text",
+        elements: [
+            {
+                html: "input",
+                type: "textarea",
+                label: "Text to paste",
+                class: "configpanel-input-textarea"
+            },
+            {
+                html: "input",
+                type: "number",
+                placeHolder: "20",
+                label: "Delay(ms)",
+                class: "configpanel-input-number"
+            }
+        ],
+        systemAction: "ctrl + v",
+    },
+    {
+        id: 8,
+        name: "Shut Down",
+        description: "Shut down computer",
+        elements: [
+            {
+                html: "input",
+                type: "number",
+                placeHolder: "20",
+                label: "Delay(ms)",
+                class: "configpanel-input-number"
+            }
+        ],
+        systemAction: "shut down",
+    },
+    {
+        id: 9,
+        name: "Sleep Mode",
+        description: "Put computer into Sleep Mode",
+        elements: [
+            {
+                html: "input",
+                type: "number",
+                placeHolder: "20",
+                label: "Delay(ms)",
+                class: "configpanel-input-number"
+            }
+        ],
+        systemAction: "sleep",
+    },
+    {
+        id: 10,
+        name: "Restart",
+        description: "Restart Computer",
+        elements: [
+            {
+                html: "input",
+                type: "number",
+                placeHolder: "20",
+                label: "Delay(ms)",
+                class: "configpanel-input-number"
+            }
+        ],
+        systemAction: "restart",
+    },
 ]

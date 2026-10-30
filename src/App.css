@@ -279,6 +279,7 @@ html {
 
 .configpanel-select,
 .configpanel-input-number,
+.configpanel-input-file,
 .configpanel-button {
     background: var(--main-gray-color);
     outline: none;
@@ -287,6 +288,12 @@ html {
     height: 4vh;
     color: var(--text-color);
     padding: 2%;
+}
+
+.configpanel-input-file::file-selector-button {
+    background: none;
+    color: white;
+    border: none;
 }
 
 .configpanel-button {
