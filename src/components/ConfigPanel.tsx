@@ -1,10 +1,12 @@
 import {cartalog} from "../data/cartalog";
+import React from "react";
 
 interface Cart {
     id: number;
     uniqId: string;
     x: number;
     y: number;
+    positionInTrain: number;
 }
 
 interface selectedCart {
@@ -14,8 +16,8 @@ interface selectedCart {
 }
 
 interface ConfigPanelProps {
-    selectedCart: selectedCart;
-    setSelectedCart: React.Dispatch<React.SetStateAction<selectedCart>>;
+    selectedCart: selectedCart | null;
+    setSelectedCart: React.Dispatch<React.SetStateAction<selectedCart | null>>;
     carts: Cart[];
 }
 
@@ -29,15 +31,13 @@ export default function ConfigPanel(props: ConfigPanelProps) {
         <div className="configpanel">
             <div className="configpanel-close-button-div">
                 <button className="configpanel-close-button"
-                        onClick={() => props.selectedCart?.isDivOpen === 0 ? props.setSelectedCart({
-                            id: props.selectedCart.id,
-                            uniqId: props.selectedCart.uniqId,
-                            isDivOpen: (95),
-                        }) : props.setSelectedCart({
-                            id: props.selectedCart?.id,
-                            uniqId: props.selectedCart?.uniqId,
-                            isDivOpen: (0),
-                        })}>
+                        onClick={() => {
+                            if (!props.selectedCart) return
+                            props.setSelectedCart({
+                                ...props.selectedCart,
+                                isDivOpen: props.selectedCart.isDivOpen === 0 ? 95 : 0,
+                            });
+                        }}>
                     <p><strong>Configuration :</strong></p>
                     <p className="configpanel-text">{currentSelectedCart ? currentSelectedCart.name : "Select a cart"}</p>
                     <p className="configpanel-cross">x</p>

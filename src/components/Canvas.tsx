@@ -1,5 +1,5 @@
 //imports
-import {useRef, MouseEvent, useState,} from 'react';
+import React, {useRef, MouseEvent, useState,} from 'react';
 import {cartalog} from "../data/cartalog";
 
 interface Cart {
@@ -7,6 +7,7 @@ interface Cart {
     uniqId: string;
     x: number;
     y: number;
+    positionInTrain: number;
 }
 
 interface selectedCart {
@@ -76,7 +77,7 @@ export default function Canvas(props: CanvasProps) {
 
 //handle the cart when held
     function handleCartMouseDown(event: MouseEvent<HTMLDivElement>) {
-        //prevent the cart from moving when the cart is held
+        //prevent the canvas from moving when the cart is held
         event.stopPropagation()
         //makes sure that the left click is clicked
         if (event.button === 0) {
@@ -93,6 +94,19 @@ export default function Canvas(props: CanvasProps) {
         //stop if neither the canvas neither the cart is being held
         if (isDraggingCanvas.current === false &&
             isDraggingCart.current.bool === false) {
+            // props.setCarts(placedCarts => placedCarts.map(cart => {
+            //
+            //     if (cart.uniqId === isDraggingCart.current.uniqId) {
+            //         return {
+            //             ...cart,
+            //             x: cart.x + deltaX / backgroundZoom,
+            //             y: cart.y + deltaY / backgroundZoom
+            //         };
+            //     } else {
+            //         return cart;
+            //     }
+            //
+            // }));
             return
         } else {
             //set deltaX and deltaY (current mouse coords - previous mouse coords)
@@ -147,9 +161,8 @@ export default function Canvas(props: CanvasProps) {
                 });
                 setBackgroundZoom(backgroundZoom + 0.1);
             }
-            ;
         } else {
-            //securtity to prevent infinite zoom
+            //security to prevent infinite zoom
             if (backgroundZoom > 0.5) {
                 let newZoom = backgroundZoom - 0.1;
                 //update backgroundZoom
@@ -183,18 +196,22 @@ export default function Canvas(props: CanvasProps) {
                 className="canvas">
 
                 {props.carts.map((cart) => (
-                    <div
-                        key={cart.uniqId}
-                        id={cart.uniqId}
-                        style={{
-                            transform: `scale(${backgroundZoom})`,
-                            left: `${(cart.x * backgroundZoom) + cameraCoordinates.x}px`,
-                            top: `${(cart.y * backgroundZoom) + cameraCoordinates.y}px`
-                        }}
-                        onClick={setSelectedCart}
-                        onMouseDown={handleCartMouseDown}
-                        className={`add-cart placed-cart ${cart.uniqId === props.selectedCart?.uniqId && 'selected-cart'}`}>
-                        <p className="cart-mouse">{cartalog[cart.id].name}</p>
+                    <div>
+                        <div
+                            key={cart.uniqId}
+                            id={cart.uniqId}
+                            style={{
+                                transform: `scale(${backgroundZoom})`,
+                                left: `${(cart.x * backgroundZoom) + cameraCoordinates.x}px`,
+                                top: `${(cart.y * backgroundZoom) + cameraCoordinates.y}px`
+                            }}
+                            onClick={setSelectedCart}
+                            onMouseDown={handleCartMouseDown}
+                            className={`add-cart placed-cart ${cart.uniqId === props.selectedCart?.uniqId && 'selected-cart'}`}>
+                            <p className="cart-mouse">{cartalog[cart.id].name}</p>
+                            <p>X = {cart.x}</p>
+                            <p>Y ={cart.y}</p>
+                        </div>
                     </div>
                 ))}
             </div>

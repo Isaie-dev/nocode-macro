@@ -14,7 +14,13 @@ import {useState} from "react";
 function App() {
 
 //functions and states that are used in multiple components
-    const [carts, setCarts] = useState<{ id: number, uniqId: string, x: number, y: number }[]>([]);
+    const [carts, setCarts] = useState<{
+        id: number,
+        uniqId: string,
+        x: number,
+        y: number,
+        positionInTrain: number
+    }[]>([]);
     const [selectedCart, setSelectedCart] = useState<{ id: number, uniqId: string, isDivOpen: number } | null>(null);
 
 //function to add a new cart to the canvas
@@ -24,7 +30,8 @@ function App() {
                 id: cartId,
                 uniqId: `cart_${crypto.randomUUID()}`,
                 x: 0,
-                y: 0
+                y: 0,
+                positionInTrain: 0,
             }
         ]);
     }
